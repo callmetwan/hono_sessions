@@ -1,6 +1,9 @@
 import Store from './Store.ts'
 import { SessionData } from '../../mod.ts'
 
+/**
+ * Memory storage driver class
+ */
 class MemoryStore implements Store {
   private data: Map<string, SessionData>
 
@@ -8,7 +11,7 @@ class MemoryStore implements Store {
     this.data = new Map
   }
 
-  getSessionById(sid: string) {
+  getSessionById(sid: string): SessionData | null | undefined {
     return this.data.has(sid) ? this.data.get(sid) : null
   }
 

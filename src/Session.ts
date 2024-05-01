@@ -3,6 +3,9 @@ interface SessionDataEntry {
   flash: boolean
 }
 
+/**
+ * Interface for specifying the necessary data for a session entry
+ */
 export interface SessionData {
   _data: Record<string, SessionDataEntry>,
   _expire: string | null,
@@ -10,6 +13,9 @@ export interface SessionData {
   _accessed: string | null,
 }
 
+/**
+ * Session class with methods for interacting with the session
+ */
 export class Session {
 
   private cache: SessionData
@@ -27,7 +33,7 @@ export class Session {
     this.cache = cache_data
   }
 
-  getCache() {
+  getCache(): SessionData {
     return this.cache
   }
 
@@ -45,7 +51,7 @@ export class Session {
     this.cache._delete = true
   }
 
-  sessionValid() {
+  sessionValid(): boolean {
     return this.cache._expire == null || Date.now() < new Date(this.cache._expire).getTime()
   }
 
@@ -53,7 +59,7 @@ export class Session {
     this.cache._accessed = new Date().toISOString()
   }
 
-  get(key: string) {
+  get(key: string): unknown {
     const entry = this.cache._data[key]
 
     if (entry) {

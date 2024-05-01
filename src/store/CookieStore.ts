@@ -6,6 +6,10 @@ interface CookieStoreOptions {
   cookieOptions?: CookieOptions,
   sessionCookieName: string
 }
+
+/**
+ * Cookie storage driver class
+ */
 class CookieStore {
   public encryptionKey: string | null | undefined
   public cookieOptions: CookieOptions | undefined
@@ -17,7 +21,7 @@ class CookieStore {
     this.sessionCookieName = options?.sessionCookieName || 'session'
   }
 
-  async getSession(c: Context) {
+  async getSession(c: Context): Promise<SessionData | null> {
     let session_data_raw: string
 
     const sessionCookie = getCookie(c, this.sessionCookieName)
