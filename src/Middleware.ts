@@ -12,7 +12,7 @@ interface SessionOptions {
   cookieOptions?: CookieOptions,
   sessionCookieName?: string
 }
-
+const idLength = 21
 export function sessionMiddleware(options: SessionOptions) {
 
   const store = options.store
@@ -83,7 +83,7 @@ export function sessionMiddleware(options: SessionOptions) {
       if (store instanceof CookieStore) {
         await store.createSession(c, defaultData)
       } else {
-        sid = await nanoid(21)
+        sid = nanoid(idLength)
         await store.createSession(sid, defaultData)
       }
 
@@ -122,7 +122,7 @@ export function sessionMiddleware(options: SessionOptions) {
 
     if (shouldRecreateSessionForNonCookieStore) {
       await store.deleteSession(sid);
-      sid = await nanoid(21);
+      sid = nanoid(idLength);
       await store.createSession(sid, session.getCache());
 
       setCookie(

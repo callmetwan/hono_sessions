@@ -1,4 +1,4 @@
-export { nanoid } from 'https://esm.sh/nanoid@4.0.0/async'
+export { nanoid } from 'https://esm.sh/nanoid@5.0.7'
 export type { MiddlewareHandler, Context } from 'https://deno.land/x/hono@v3.12.8/mod.ts'
 export { getCookie, setCookie } from 'https://deno.land/x/hono@v3.12.8/helper/cookie/index.ts'
 export type { CookieOptions } from 'https://deno.land/x/hono@v3.12.8/utils/cookie.ts'
